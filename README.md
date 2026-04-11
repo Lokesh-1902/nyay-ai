@@ -1,73 +1,188 @@
-# Welcome to your Lovable project
+# Implementation Details
 
-## Project info
+## System Architecture
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+The system is designed using a modular architecture consisting of:
 
-## How can I edit this code?
+1. Frontend (User Interface)  
+2. Backend (API & Processing Layer)  
+3. AI Model Layer (LegalBERT + ML Models)  
+4. Reasoning Layer (Rule-Based System)  
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## Frontend Implementation
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- Developed using React.js  
+- Provides user-friendly interface for:  
+  - Uploading legal documents  
+  - Entering case details  
+  - Viewing analysis results  
 
-Changes made via Lovable will be committed automatically to this repo.
+### Key Features:
+- Form-based input system  
+- File upload support  
+- Dynamic result rendering  
+- Responsive UI  
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Backend Implementation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Built using Supabase (Backend-as-a-Service)  
+- Handles:  
+  - API requests  
+  - Data processing  
+  - Communication with AI models  
 
-Follow these steps:
+### Functional Modules:
+- Input handling  
+- Text preprocessing pipeline  
+- Model integration  
+- Output formatting  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Data Preprocessing
 
-# Step 3: Install the necessary dependencies.
-npm i
+Before feeding data into the model, preprocessing is performed:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- Lowercasing text  
+- Removing punctuation and special characters  
+- Tokenization  
+- Stopword removal  
+- Text normalization  
 
-**Edit a file directly in GitHub**
+This ensures consistent and clean input for the AI model.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Dataset Preparation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Dataset includes:  
+  - Legal documents  
+  - Case laws  
+  - Judicial records  
 
-## What technologies are used for this project?
+- Categories:  
+  - Criminal  
+  - Civil  
+  - Constitutional  
 
-This project is built with:
+- Data split:  
+  - 80% Training  
+  - 20% Testing  
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## Machine Learning Models
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### 1. Logistic Regression
+- Used for basic classification tasks  
+- Fast and efficient for structured data  
 
-## Can I connect a custom domain to my Lovable project?
+### 2. Naïve Bayes
+- Used for probabilistic classification  
+- Works well with text-based features  
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Deep Learning Model (LegalBERT)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Based on Transformer Architecture  
+- Trained on legal text data  
+- Captures contextual meaning of legal language  
+
+### Key Concepts:
+- Self-attention mechanism  
+- Contextual embeddings  
+- Masked Language Modeling (MLM)  
+- Next Sentence Prediction (NSP)  
+
+---
+
+## Neuro-Symbolic Integration
+
+The system combines:
+
+1. Neural Component (LegalBERT)  
+   - Understands legal text  
+   - Extracts entities and context  
+
+2. Symbolic Component (Rule-Based System)  
+   - Applies logical rules  
+   - Ensures reasoning and consistency  
+
+3. Integration Layer  
+   - Combines outputs of both systems  
+   - Produces final explainable results  
+
+---
+
+## Workflow
+
+1. User inputs legal document or case details  
+2. Data is preprocessed  
+3. LegalBERT analyzes text  
+4. Key information is extracted  
+5. Rule-based logic is applied  
+6. Results are structured into:  
+   - Case classification  
+   - Legal provisions  
+   - Evidence analysis  
+   - Risk assessment  
+   - Outcome prediction  
+
+---
+
+## Model Training
+
+- Optimizer: Adam  
+- Loss Function: Cross-Entropy Loss  
+- Batch Size: Optimized for performance  
+
+---
+
+## Output Generation
+
+The system provides structured output:
+
+- Case type (criminal/civil/etc.)  
+- Relevant legal sections  
+- Facts and evidence summary  
+- Risk factors and strengths  
+- Possible legal outcomes  
+
+---
+
+## Deployment
+
+- Frontend deployed as web application  
+- Backend hosted using Supabase services  
+- Model integrated via API calls  
+
+---
+
+## Design Considerations
+
+- Scalability for large legal documents  
+- Accuracy in classification and reasoning  
+- Explainability of results  
+- User-friendly interface  
+
+---
+
+## Limitations
+
+- Handling very long documents can be computationally expensive  
+- Model performance depends on dataset quality  
+- Requires continuous updates for legal changes  
+
+---
+
+## Future Improvements
+
+- Use Longformer for long documents  
+- Improve accuracy with advanced models  
+- Add multilingual support  
+- Real-time legal assistance  
